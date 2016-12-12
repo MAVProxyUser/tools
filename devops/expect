@@ -1,0 +1,42 @@
+#!/usr/local/bin/expect
+set timeout 4
+set passwd ""
+set passwd1 ""
+set hostname "vg-jumpserver-prod"
+set googleath [lindex $argv 0]
+spawn $env(SHELL)
+match_max 100000
+send -- "ssh evanyu\r"
+expect "Password:"
+send -- "$passwd\r"
+expect "Verification code:"
+send -- "$googleath\r"
+expect "$hostname"
+send -- "sdk1\r"
+expect "$hostname"
+send -- "su - sdkdev\r"
+expect "Password:"
+send -- "$passwd1\r"
+expect "$hostname"
+send -- "cd ~/www/\r"
+expect "$hostname"
+send -- "source heroku\r"
+interact
+
+#!/usr/local/bin/expect
+set timeout 2
+set passwd ""
+set hostname "jumpserver"
+set action [lindex $argv 0]
+spawn $env(SHELL)
+match_max 100000
+send -- "ssh \r"
+expect "$hostname"
+send -- "su - liceser\r"
+expect "Password:"
+send -- "$passwd\r"
+expect "$hostname"
+send -- "cd ~/djiac/ \r"
+expect "$hostname"
+send -- "mina spro-usa-dsflir01 $action\r"
+interact
