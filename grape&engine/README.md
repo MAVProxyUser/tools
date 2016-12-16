@@ -30,6 +30,11 @@ module Service
   end
 end
 
+要养成处理异常的习惯
+begin
+resuce
+end
+
 grape开发同时需要mvc的设计。
 jbuilder参考devops的example
 
